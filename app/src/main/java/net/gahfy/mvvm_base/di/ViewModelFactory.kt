@@ -1,4 +1,4 @@
-package com.linecorp.linenovel.di
+package net.gahfy.mvvm_base.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

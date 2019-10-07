@@ -6,7 +6,7 @@ import net.gahfy.mvvm_base.di.DaggerAppComponent
 
 class App : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.builder().build()
+        return DaggerAppComponent.builder().application(this).build()
     }
 
     companion object {

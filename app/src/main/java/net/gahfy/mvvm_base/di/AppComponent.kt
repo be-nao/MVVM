@@ -6,6 +6,7 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import net.gahfy.mvvm_base.App
 import net.gahfy.mvvm_base.di.module.ActivityModule
+import net.gahfy.mvvm_base.di.module.FragmentModule
 import net.gahfy.mvvm_base.di.module.ViewModelModule
 import javax.inject.Singleton
 
@@ -13,8 +14,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidInjectionModule::class,
-        AppModule::class,
         ActivityModule::class,
+        FragmentModule::class,
         ViewModelModule::class
     ]
 )
