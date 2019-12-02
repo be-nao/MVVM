@@ -2,7 +2,7 @@ package net.gahfy.mvvm_base.di.module
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import net.gahfy.mvvm_base.MainActivity
+import net.gahfy.mvvm_base.ui.MainActivity
 
 @Module
 abstract class ActivityModule {

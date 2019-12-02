@@ -1,4 +1,4 @@
-package net.gahfy.mvvm_base
+package net.gahfy.mvvm_base.ui
 
 import android.os.Bundle
 import androidx.navigation.findNavController
@@ -7,6 +7,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.android.support.DaggerAppCompatActivity
+import net.gahfy.mvvm_base.R
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -20,7 +21,9 @@ class MainActivity : DaggerAppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+                R.id.navigation_home,
+                R.id.navigation_dashboard,
+                R.id.navigation_notifications
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
