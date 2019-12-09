@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.Observer
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.DaggerFragment
+import net.gahfy.mvvm_base.CustomToast
 import net.gahfy.mvvm_base.R
+import net.gahfy.mvvm_base.databinding.FragmentDashboardBinding
 import net.gahfy.mvvm_base.di.ViewModelFactory
+import net.gahfy.mvvm_base.observe
 import javax.inject.Inject
 
 class DashboardFragment : DaggerFragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var viewModel: DashboardViewModel
+    private lateinit var binding: FragmentDashboardBinding
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -24,13 +27,35 @@ class DashboardFragment : DaggerFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this,viewModelFactory).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
-        return root
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
+        return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        viewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(DashboardViewModel::class.java)
+        setBinding()
+        observeViewModel()
+    }
+
+    private fun setBinding() {
+        binding.apply {
+            viewModel = this@DashboardFragment.viewModel
+            lifecycleOwner = this@DashboardFragment.viewLifecycleOwner
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.randomUser.observe(viewLifecycleOwner) {
+            it?.let {
+                binding.textDashboard.text = it.results[0].gender
+            }
+        }
+
+        viewModel.errorObserver.observe(viewLifecycleOwner) {
+            CustomToast(context).showError(it)
+        }
     }
 }

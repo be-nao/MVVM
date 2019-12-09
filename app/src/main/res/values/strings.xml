@@ -3,4 +3,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="common_error_network">ネットワークエラーが発生しました。\nインターネット接続を確認して、もう一度お試しください。</string>
+    <string name="common_error_unknown">一時的なエラーが発生しました。\nしばらくしてからもう一度お試しください。</string>
 </resources>

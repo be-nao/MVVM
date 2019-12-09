@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.Provides
 import net.gahfy.mvvm_base.App
 import net.gahfy.mvvm_base.BuildConfig
+import net.gahfy.mvvm_base.api.random_user.RandomUserService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -53,14 +54,14 @@ class RetrofitModule {
             .addConverterFactory(NullOnEmptyConverterFactory())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxErrorHandlingCallAdapterFactory.create(gson))
-//            .baseUrl(app.getString(R.string.base_api_url))
+            .baseUrl("https://randomuser.me")
             .client(okHttpClient)
             .build()
     }
 
-//    @Provides
-//    @Singleton
-//    fun providesLineApiClient(app: App): LineApiClient {
-//        return LineApiClientBuilder(app, app.getString(R.string.line_channel_id)).build()
-//    }
+    @Provides
+    @Singleton
+    fun providesTopScreenApi(retrofit: Retrofit): RandomUserService {
+        return retrofit.create(RandomUserService::class.java)
+    }
 }
