@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="net.gahfy.mvvm_base.ui.dashboard.DashboardViewModel" />
+            type="be_nao.mvvm_base.ui.dashboard.DashboardViewModel" />
 
     </data>
 
